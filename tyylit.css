@@ -1,0 +1,50 @@
+.stop1 {
+    stop-color: black;
+}
+
+.stop2 {
+    stop-color: rgb(255, 0, 255);
+}
+
+.stop3 {
+    stop-color: black;
+}
+
+body {
+    margin: 0px;
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    top: 0;
+}
+
+.palkki {
+    animation-duration: 8s;
+    animation-name: slide;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    position: absolute;
+    animation-timing-function: ease-in-out;
+    top: -5%;
+    height: 5%;
+    width: 100vw;
+}
+
+@keyframes tayte {
+    0% {
+        stop-color: rgb(255, 0, 255);
+    }
+    50% {
+        stop-color: yellow;
+    }
+}
+
+@keyframes slide {
+    from {
+        transform: translateY(-10vh);
+    }
+    to {
+        transform: translateY(110vh);
+    }
+}
