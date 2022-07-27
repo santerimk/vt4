@@ -48,3 +48,47 @@ body {
         transform: translateY(110vh);
     }
 }
+
+canvas {
+    display: block;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.canvasEven {
+    animation-duration: 4s;
+    animation-name: polloEven;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in;
+}
+
+.canvasOdd {
+    animation-duration: 4s;
+    animation-name: polloOdd;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in;
+}
+
+@keyframes polloEven {
+    from {
+        transform: translateX(calc(50vw - 50%));
+    }
+    to {
+        transform: translateX(calc(-50vw + 50%));
+    }
+}
+
+@keyframes polloOdd {
+    from {
+        transform: translateX(calc(-50vw + 50%));
+    }
+    to {
+        transform: translateX(calc(50vw - 50%));
+    }
+}
+

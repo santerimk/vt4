@@ -2,6 +2,7 @@
 //@ts-check 
 
 let palkkimaara = 10;
+let osienmaara = 16;
 let img = new Image();
 img.src = 'http://appro.mit.jyu.fi/tiea2120/vt/vt4/owl.png';
 img.alt = 'Pollo';
@@ -9,6 +10,7 @@ img.title = 'pollo';
 
 window.onload = () => {
     teePalkit();
+    luoPollo();
 };
 
 window.onresize = () => {
@@ -72,5 +74,25 @@ const teePalkit = () => {
         body.appendChild(palkki);
         rect.setAttribute("fill", "url(#" + liukuvari.id + ")");
         delay = delay + 200;
+    }
+};
+
+const luoPollo = () => {
+    let body = document.getElementsByTagName("body")[0];
+    for (let i = 0; i < osienmaara; i++) {
+        let canvas = document.createElement("canvas");
+        if (i % 2 == 0) {
+            canvas.setAttribute("class", "canvasEven");
+        } else {
+            canvas.setAttribute("class", "canvasOdd");
+        }
+        canvas.width = img.width;
+        canvas.height = img.height / 16;
+        let context = canvas.getContext("2d");
+        let osaKorkeus = img.height / 16;
+        let leveys = img.width;
+        // kuva, sourcex, sourcey, sourcew, sourceh, destinationx, destinationy, destinationw, destinationh
+        context.drawImage(img, 0, i * osaKorkeus, leveys, osaKorkeus, 0, 0, leveys, osaKorkeus);
+        body.appendChild(canvas);
     }
 };
