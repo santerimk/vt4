@@ -8,19 +8,33 @@ img.src = 'http://appro.mit.jyu.fi/tiea2120/vt/vt4/owl.png';
 img.alt = 'Pollo';
 img.title = 'pollo';
 
+/**
+ * Ikkunan avautuessa
+ */
 window.onload = () => {
     teePalkit();
+    luoNappi();
     luoPollo();
 };
 
+/**
+ * Ikkunan koon muuttuessa
+ */
 window.onresize = () => {
-    //
+    let vw = window.innerWidth * 0.01;
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vw', `${vw}px`);
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    // update window.height ja window.width
 };
 
+/**
+ * Tekee svg väripalkit palkkienmäärän mukaan
+ */
 const teePalkit = () => {
     let delay = 0;
-    let body = document.getElementsByTagName("body")[0];
     let palkkiDelay = 0;
+    let body = document.getElementsByTagName("body")[0];
     for (let i = 0; i < palkkimaara; i++) {
         palkkiDelay = delay + 'ms';
         let palkki = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -77,6 +91,9 @@ const teePalkit = () => {
     }
 };
 
+/**
+ * Luo pöllön joka on leikattu osienmaaran mukaan (=16) osaan eri canvaksille
+ */
 const luoPollo = () => {
     let body = document.getElementsByTagName("body")[0];
     for (let i = 0; i < osienmaara; i++) {
@@ -95,4 +112,30 @@ const luoPollo = () => {
         context.drawImage(img, 0, i * osaKorkeus, leveys, osaKorkeus, 0, 0, leveys, osaKorkeus);
         body.appendChild(canvas);
     }
+};
+
+/**
+ * Luo pingviinin ja asettaa sen body elementtiin
+ */
+const luoPingviini = () => {
+    let body = document.getElementsByTagName("body")[0];
+    let pingviini = document.createElement("img");
+    pingviini.src = "https://appro.mit.jyu.fi/tiea2120/vt/vt4/penguin.png";
+    pingviini.alt = "peng";
+    pingviini.title = "ping";
+    pingviini.setAttribute("class", "pingviini");
+    body.appendChild(pingviini);
+};
+
+/**
+ * Luo napin jota klikatessa luodaan uusi pingviini liikkumaan ruudulle
+ */
+const luoNappi = () => {
+    let button = document.createElement("button");
+    let buttonTeksti = document.createTextNode("Lisää pingviini");
+    button.setAttribute("id", "pingviiniLisays");
+    button.appendChild(buttonTeksti);
+    button.addEventListener('click', luoPingviini);
+    let body = document.getElementsByTagName("body")[0];
+    body.appendChild(button);
 };
